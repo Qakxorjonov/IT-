@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valyuta</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e2e2e2;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+        .converter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Valyuta </h1>
+        <input type="number" id="amount" placeholder="Summani kiriting">
+        <button onclick="convertCurrency()">Dollar qilish</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            let amount = document.getElementById("amount").value;
+            let rate = 10850; // O'zbekiston so'mining USDga nisbati
+            let converted = (amount / rate).toFixed(2);
+            document.getElementById("result").innerText = `${amount} so'm = ${converted} USD`;
+        }
+    </script>
+</body>
+</html>

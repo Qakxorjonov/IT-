@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raqamni Topish O'yini</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: #61dafb;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Raqamni Topish O'yini</h1>
+        <p>1 dan 100 gacha bir raqam o'ylab toping:</p>
+        <input type="number" id="guess" placeholder="Masalan: 42">
+        <button onclick="guessNumber()">Topish</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        function guessNumber() {
+            let guess = document.getElementById("guess").value;
+            if (guess == randomNumber) {
+                document.getElementById("result").innerText = `To'g'ri! Bu raqam: ${randomNumber}`;
+            } else if (guess > randomNumber) {
+                document.getElementById("result").innerText = `Raqam kichikroq!`;
+            } else {
+                document.getElementById("result").innerText = `Raqam kattaroq!`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suratni Ko'rsatish</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+        }
+        label:hover {
+            background-color: #218838;
+        }
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Suratni Ko'rsatish</h1>
+        <label for="fileInput">Suratni tanlang</label>
+        <input type="file" id="fileInput" onchange="showImage(event)">
+        <img id="image" src="">
+    </div>
+
+    <script>
+        function showImage(event) {
+            let reader = new FileReader();
+            reader.onload = function() {
+                let img = document.getElementById('image');
+                img.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

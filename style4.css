@@ -1,0 +1,30 @@
+.banner-card{
+    position: relative;
+}
+
+
+
+.banner-card img{
+  max-width: 100%;
+  height:auto;
+}
+button{
+    background-color: orangered;
+    color: black;
+    width:240px;
+    height:35px;
+    border-radius:15px;
+}
+.banner-text{
+   position: absolute;
+   top:20%;
+   padding:10px;
+   padding-left:37%;
+
+}
+input{
+    width:250px;
+    height:27px;
+    border-radius:15px;
+}
+

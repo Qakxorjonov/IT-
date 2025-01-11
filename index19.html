@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tug'ilgan Kunni Hisoblagich</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tug'ilgan Kun Hisoblagichi</h1>
+        <input type="date" id="birthDate" placeholder="Tug'ilgan sanani kiriting">
+        <button onclick="calculateAge()">Hisoblash</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateAge() {
+            let birthDate = new Date(document.getElementById("birthDate").value);
+            let today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDifference = today.getMonth() - birthDate.getMonth();
+
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            document.getElementById("result").innerText = `Sizning yoshingiz: ${age} yil`;
+        }
+    </script>
+</body>
+</html>

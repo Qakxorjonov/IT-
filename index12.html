@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulyator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            font-family: 'Roboto', sans-serif;
+            color: #61dafb;
+        }
+        .calculator {
+            background-color: #20232a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        #result {
+            width: 100%;
+            height: 50px;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: right;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #61dafb;
+            outline: none;
+            color: #61dafb;
+            background-color: #282c34;
+            border-radius: 5px;
+        }
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 1.2em;
+            margin: 5px;
+            background: linear-gradient(145deg, #61dafb, #21a1f1);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(145deg, #21a1f1, #0b79db);
+        }
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <br>
+        <button onclick="insert(1)">1</button>
+        <button onclick="insert(2)">2</button>
+        <button onclick="insert(3)">3</button>
+        <button onclick="operate('+')">+</button>
+        <br>
+        <button onclick="insert(4)">4</button>
+        <button onclick="insert(5)">5</button>
+        <button onclick="insert(6)">6</button>
+        <button onclick="operate('-')">-</button>
+        <br>
+        <button onclick="insert(7)">7</button>
+        <button onclick="insert(8)">8</button>
+        <button onclick="insert(9)">9</button>
+        <button onclick="operate('*')">*</button>
+        <br>
+        <button onclick="clearResult()">C</button>
+        <button onclick="insert(0)">0</button>
+        <button onclick="operate('/')">/</button>
+        <button onclick="calculate()">=</button>
+    </div>
+
+    <script>
+        let result = document.getElementById("result");
+        let currentInput = "";
+
+        function insert(num) {
+            currentInput += num;
+            result.value = currentInput;
+        }
+
+        function clearResult() {
+            currentInput = "";
+            result.value = "";
+        }
+
+        function operate(operator) {
+            currentInput += " " + operator + " ";
+            result.value = currentInput;
+        }
+
+        function calculate() {
+            result.value = eval(currentInput);
+            currentInput = result.value;
+        }
+        document.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    if (key >= '0' && key <= '9') {
+        appendNumber(key);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        appendOperator(key);
+    } else if (key === 'Enter' || key === '=') {
+        calculateResult();
+    } else if (key === 'Backspace') {
+        deleteLast();
+    } else if (key === 'Escape') {
+        clearDisplay();
+    }
+});
+
+function appendNumber(number) {
+    if (display.textContent === '0') {
+        display.textContent = number;
+    } else {
+        display.textContent += number;
+    }
+}
+
+function appendOperator(operator) {
+    if (display.textContent !== '0') {
+        display.textContent += ` ${operator} `;
+    }
+}
+
+function calculateResult() {
+    try {
+        display.textContent = eval(display.textContent.replace(/x/g, '*').replace(/÷/g, '/'));
+    } catch {
+        display.textContent = 'Error';
+    }
+}
+
+function deleteLast() {
+    display.textContent = display.textContent.slice(0, -1) || '0';
+}
+
+function clearDisplay() {
+    display.textContent = '0';
+}
+document.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    if (key >= '0' && key <= '9') {
+        appendNumber(key);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        appendOperator(key);
+    } else if (key === 'Enter' || key === '=') {
+        calculateResult();
+    } else if (key === 'Backspace') {
+        deleteLast();
+    } else if (key === 'Escape') {
+        clearDisplay();
+    }
+});
+
+function appendNumber(number) {
+    if (display.textContent === '0') {
+        display.textContent = number;
+    } else {
+        display.textContent += number;
+    }
+}
+
+function appendOperator(operator) {
+    if (display.textContent !== '0') {
+        display.textContent += ` ${operator} `;
+    }
+}
+
+function calculateResult() {
+    try {
+        display.textContent = eval(display.textContent.replace(/x/g, '*').replace(/÷/g, '/'));
+    } catch {
+        display.textContent = 'Error';
+    }
+}
+
+function deleteLast() {
+    display.textContent = display.textContent.slice(0, -1) || '0';
+}
+
+function clearDisplay() {
+    display.textContent = '0';
+}
+
+    </script>
+</body>
+</html>

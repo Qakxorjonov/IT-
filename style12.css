@@ -1,0 +1,50 @@
+
+.navbar{
+    margin-left: 525px;
+
+}
+h5{
+    display: inline-block;
+    width:133px;
+    height: 23px;
+}
+div{
+    border: 2px solid white;
+    background-color: rgba(green);
+    margin-top:100px;
+    display: inline-block;
+    margin-left:75px;
+}
+.card{
+    width: max-content;
+    border: 2px solid green;
+    color:black;
+    padding:20px;
+    border-radius: 10px;
+    width:217px;
+    background-color: rgba(234,242,229,1);
+    
+}
+button{
+    width: 100%;
+    background-color: green;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+}
+.azik{
+    color: green;
+}
+img{
+    margin-left:25px;
+}
+button{
+    background-color: rgba(6,111,20,1);
+    width:131px;
+    height:55px;
+    gap: 10px;
+    border-radius:5px;
+    margin-left:630px;
+    margin-bottom: 16px;
+}

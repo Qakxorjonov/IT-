@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani tugilgan kunimga narsa</title>
+    <link rel="shortcut icon" type="image" href="./image.svg">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f9f9f9, #d3d3d3);
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            flex-grow: 1;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        li span {
+            flex-grow: 1;
+            font-size: 16px;
+        }
+
+        li button {
+            background-color: #FF5733;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            padding: 8px 12px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        li button:hover {
+            background-color: #c7001e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mani tugilgan kunimga narsa</h1>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Yozing..." onkeydown="if(event.key === 'Enter') addTask()">
+            <button onclick="addTask()">Qo'shish</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadTasks);
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.forEach(task => addTaskElement(task));
+        }
+
+        function saveTasks(tasks) {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            if (taskInput.value.trim() !== '') {
+                addTaskElement(taskInput.value);
+
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                tasks.push(taskInput.value);
+                saveTasks(tasks);
+
+                taskInput.value = '';
+            }
+        }
+
+        function addTaskElement(task) {
+            const taskList = document.getElementById('taskList');
+            const listItem = document.createElement('li');
+            const taskText = document.createElement('span');
+            taskText.textContent = task;
+            listItem.appendChild(taskText);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = () => {
+                taskList.removeChild(listItem);
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                const index = tasks.indexOf(taskText.textContent);
+                if (index > -1) {
+                    tasks.splice(index, 1);
+                    saveTasks(tasks);
+                }
+            };
+            listItem.appendChild(deleteButton);
+
+            taskList.appendChild(listItem);
+        }
+    </script>
+    </body>
+    <html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fruit Ninja</title>
+    <style>
+        canvas {
+            display: block;
+            margin: auto;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="480" height="320"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let fruits = [];
+        let score = 0;
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function createFruit() {
+            const x = random(0, canvas.width);
+            const y = canvas.height;
+            const size = random(20, 30);
+            const speed = random(2, 5);
+            fruits.push({ x, y, size, speed });
+        }
+
+        function drawFruit(fruit) {
+            ctx.beginPath();
+            ctx.arc(fruit.x, fruit.y, fruit.size, 0, Math.PI * 2);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function updateFruits() {
+            for (let i = 0; i < fruits.length; i++) {
+                fruits[i].y -= fruits[i].speed;
+            }
+            fruits = fruits.filter(fruit => fruit.y + fruit.size > 0);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const fruit of fruits) {
+                drawFruit(fruit);
+            }
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 10, 20);
+        }
+
+        canvas.addEventListener("click", e => {
+            const mouseX = e.offsetX;
+            const mouseY = e.offsetY;
+            for (const fruit of fruits) {
+                const dist = Math.hypot(fruit.x - mouseX, fruit.y - mouseY);
+                if (dist < fruit.size) {
+                    score += 10;
+                    fruits.splice(fruits.indexOf(fruit), 1);
+                    break;
+                }
+            }
+        });
+
+        function gameLoop() {
+            updateFruits();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        setInterval(createFruit, 1800);
+        gameLoop();
+    </script>
+</body>
+</html>

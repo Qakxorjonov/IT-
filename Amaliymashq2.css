@@ -1,0 +1,54 @@
+body{
+    background-color: rgba(189, 218, 122, 1);
+    font-family: "Anton", sans-serif;
+}
+h1{
+    width: 756px;
+    height:50px;
+    margin-left:300px;
+}
+h4{
+    width:870px;
+    height: 44px;
+    margin-left:300px;
+}
+img{
+    bottom:300px;
+}
+p{
+    width: 213.67px;
+    height: 60px;
+    font-family: Montserrat;
+font-size: 14px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0.20000000298023224px;
+text-align: left;
+}
+.bobo{
+    display: flex;
+    
+}
+div{
+    width:280px;
+height: Fill (330px);
+padding: 45px 40px 35px 40px;
+gap: 20px;
+border-radius: 30px;
+border: 1px;
+opacity: 0px;
+background-color: rgba(255,255,255,1);
+}
+.aziz{
+    margin-left:450px;
+    width:280px;
+height: Fill (330px);
+padding: 45px 40px 35px 40px;
+gap: 20px;
+border-radius: 30px;
+border: 1px;
+opacity: 0px;
+background-color: rgba(255,255,255,1);
+}
+
+

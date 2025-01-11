@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sekundomer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            font-family: 'Roboto', sans-serif;
+            color: #61dafb;
+        }
+        .container {
+            text-align: center;
+        }
+        .time {
+            font-size: 2em;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sekundamer</h1>
+        <div class="time" id="time">0.00</div>
+        <button onclick="startGame()">Boshlash</button>
+        <br>
+        <button onclick="stopGame()">To'xtatish</button>
+    </div>
+
+    <script>
+        let startTime;
+        let interval;
+
+        function startGame() {
+            startTime = new Date().getTime();
+            interval = setInterval(updateTime, 10);
+        }
+
+        function updateTime() {
+            let currentTime = new Date().getTime();
+            let elapsed = (currentTime - startTime) / 1000;
+            document.getElementById("time").textContent = elapsed.toFixed(2);
+        }
+
+        function stopGame() {
+            clearInterval(interval);
+            let finalTime = parseFloat(document.getElementById("time").textContent);
+            alert(`To'xtatish vaqti: ${finalTime} soniya`);
+        }
+    </script>
+</body>
+</html>

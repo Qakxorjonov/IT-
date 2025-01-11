@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matnni Teskari Qiluvchi O'yin</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            font-family: 'Roboto', sans-serif;
+            color: #61dafb;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Matnni Teskari Qiluvchi O'yin</h1>
+        <input type="text" id="textInput" placeholder="Matnni kiriting">
+        <button onclick="reverseText()">Teskari Qilish</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function reverseText() {
+            let text = document.getElementById("textInput").value;
+            let reversed = text.split('').reverse().join('');
+            document.getElementById("result").innerText = reversed;
+        }
+    </script>
+</body>
+</html>

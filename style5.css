@@ -1,0 +1,19 @@
+div{
+    border: 4px solid green;
+    width:600px;
+    height:605px;
+    background-color: black;
+}
+button{
+    background-color: green;
+    color: black;
+    width:400px;
+    height:60px;
+}
+h1{
+    color: white;
+}
+h3{
+    color:white;
+}
+    

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Masofa O'lchagich</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1e1e1e;
+            font-family: 'Roboto', sans-serif;
+            color: #61dafb;
+        }
+        .converter {
+            background-color: #20232a;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .converter input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            text-align: center;
+        }
+        .converter button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .converter button:hover {
+            background-color: #21a1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Masofa O'lchagich</h1>
+        <input type="number" id="km" placeholder="Kilometr">
+        <button onclick="convert()">O'zgartirish</button>
+        <input type="text" id="miles" placeholder="Milya" readonly>
+    </div>
+
+    <script>
+        function convert() {
+            let km = document.getElementById("km").value;
+            let miles = km * 0.621371;
+            document.getElementById("miles").value = miles.toFixed(2);
+        }
+    </script>
+</body>
+</html>

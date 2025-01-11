@@ -1,0 +1,23 @@
+h1,input{
+    display: inline-block;
+}
+h1{
+    margin-left:40px;
+    color: white;
+}
+input{
+    margin-left: 200px;
+    border-radius: 10px;
+}
+.azizb{
+    margin-left:400px;
+    width:300px;
+    height:24px;
+}
+body{
+    background-color: rgba(20,155,252,1);
+}
+img{
+    width:90px;
+    height:75px;
+}

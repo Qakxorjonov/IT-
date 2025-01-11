@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sayt Tafsilotlari</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2d2d2d;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #61dafb;
+            color: #2d2d2d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sayt Tafsilotlari</h1>
+        <button onclick="showDetails()">Ko'rsatish</button>
+        <div class="result" id="details"></div>
+    </div>
+
+    <script>
+        function showDetails() {
+            let details = `
+                Brauzer: ${navigator.userAgent}<br>
+                Ekran O'lchami: ${window.innerWidth}x${window.innerHeight}<br>
+                Til: ${navigator.language}
+            `;
+            document.getElementById("details").innerHTML = details;
+        }
+    </script>
+</body>
+</html>

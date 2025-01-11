@@ -1,0 +1,20 @@
+h1{color: yellow;}
+div{
+color: black;
+background-color: blue;
+width: max-content;
+height: max-content;
+}
+
+div {
+    width: 30%;
+    background-color: yellow;
+}
+p {
+    color: blue;
+}
+h1 {
+    color: green;
+}
+
+

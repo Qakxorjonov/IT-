@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sana va Vaqtni Ko'rsatish</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1e1e1e;
+            color: #61dafb;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .time, .date {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sana va Vaqtni Ko'rsatish</h1>
+        <div class="date" id="date"></div>
+        <div class="time" id="time"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            let now = new Date();
+            document.getElementById("date").textContent = now.toLocaleDateString();
+            document.getElementById("time").textContent = now.toLocaleTimeString();
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

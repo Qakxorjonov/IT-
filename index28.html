@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Space Invaders</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const context = canvas.getContext('2d');
+
+        const player = {
+            x: canvas.width / 2 - 25,
+            y: canvas.height - 60,
+            width: 50,
+            height: 50,
+            speed: 5,
+            dx: 0
+        };
+
+        const bullet = {
+            x: player.x + player.width / 2,
+            y: player.y,
+            width: 5,
+            height: 20,
+            speed: 8,
+            dy: -8,
+            isMoving: false
+        };
+
+        const alienRows = 3;
+        const alienCols = 10;
+        const alienPadding = 20;
+        const alienWidth = 40;
+        const alienHeight = 40;
+        const alienOffsetTop = 30;
+        const alienOffsetLeft = 30;
+        const aliens = [];
+
+        for (let row = 0; row < alienRows; row++) {
+            aliens[row] = [];
+            for (let col = 0; col < alienCols; col++) {
+                aliens[row][col] = {
+                    x: 0,
+                    y: 0,
+                    width: alienWidth,
+                    height: alienHeight,
+                    status: 1
+                };
+            }
+        }
+
+        function drawPlayer() {
+            context.fillStyle = 'blue';
+            context.fillRect(player.x, player.y, player.width, player.height);
+        }
+
+        function drawBullet() {
+            if (bullet.isMoving) {
+                context.fillStyle = 'red';
+                context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            }
+        }
+
+        function drawAliens() {
+            for (let row = 0; row < alienRows; row++) {
+                for (let col = 0; col < alienCols; col++) {
+                    if (aliens[row][col].status === 1) {
+                        const alienX = col * (alienWidth + alienPadding) + alienOffsetLeft;
+                        const alienY = row * (alienHeight + alienPadding) + alienOffsetTop;
+                        aliens[row][col].x = alienX;
+                        aliens[row][col].y = alienY;
+                        context.fillStyle = 'purple';
+                        context.fillRect(alienX, alienY, alienWidth, alienHeight);
+                    }
+                }
+            }
+        }
+
+        function movePlayer() {
+            player.x += player.dx;
+
+            if (player.x < 0) player.x = 0;
+            if (player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+        }
+
+        function moveBullet() {
+            if (bullet.isMoving) {
+                bullet.y += bullet.dy;
+
+                if (bullet.y < 0) {
+                    bullet.isMoving = false;
+                }
+            }
+        }
+
+        function collisionDetection() {
+            for (let row = 0; row < alienRows; row++) {
+                for (let col = 0; col < alienCols; col++) {
+                    const a = aliens[row][col];
+                    if (a.status === 1 && bullet.isMoving && bullet.x > a.x && bullet.x < a.x + a.width && bullet.y > a.y && bullet.y < a.y + a.height) {
+                        a.status = 0;
+                        bullet.isMoving = false;
+                    }
+                }
+            }
+        }
+
+        function draw() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+            drawBullet();
+            drawAliens();
+        }
+
+        function update() {
+            movePlayer();
+            moveBullet();
+            collisionDetection();
+            draw();
+            requestAnimationFrame(update);
+        }
+
+        function keyDown(e) {
+            if (e.key === 'Right' || e.key === 'ArrowRight') {
+                player.dx = player.speed;
+            } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+                player.dx = -player.speed;
+            } else if (e.key === ' ' && !bullet.isMoving) {
+                bullet.x = player.x + player.width / 2 - bullet.width / 2;
+                bullet.y = player.y;
+                bullet.isMoving = true;
+            }
+        }
+
+        function keyUp(e) {
+            if (e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') {
+                player.dx = 0;
+            }
+        }
+
+        document.addEventListener('keydown', keyDown);
+        document.addEventListener('keyup', keyUp);
+
+        update();
+    </script>
+</body>
+</html>

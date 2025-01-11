@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sanalar Kalkulyatori</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            font-family: 'Roboto', sans-serif;
+            color: #61dafb;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sanalar Kalkulyatori</h1>
+        <input type="date" id="startDate">
+        <input type="date" id="endDate">
+        <button onclick="calculateDays()">Hisoblash</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateDays() {
+            let startDate = new Date(document.getElementById("startDate").value);
+            let endDate = new Date(document.getElementById("endDate").value);
+            let timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+            let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            document.getElementById("result").innerText = `Farq: ${daysDiff} kun`;
+        }
+    </script>
+</body>
+</html>
